@@ -1,0 +1,32 @@
+on:
+  #pull_request:
+  push:
+      tags:
+        -"v*"
+
+name: Create Release
+
+jobs:
+  build:
+    name: CreateRelease
+    #runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2 # official GitHub Action used to check-out a repository so a workflow can access it.
+      - name: CreateRelease
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically created token for each workflow run.
+        with:
+          tag_name: ${{ github.ref }}
+          #Contexts are a way to access information about workflow runs, runner environments, jobs, 
+          #and steps. Each context is an object that contains properties, which can be strings or other objects.
+          #github.ref -> The branch or tag ref that triggered the workflow run
+          release_name: Release ${{ github.ref }} 
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
