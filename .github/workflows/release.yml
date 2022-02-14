@@ -2,6 +2,7 @@ on:
   #pull_request:
   push:
 
+
 name: Create Release
 
 jobs:
@@ -9,8 +10,8 @@ jobs:
     name: CreateRelease
     runs-on: ubuntu-latest
     steps:
-      #- name: Checkout code
-      #  uses: actions/checkout@v2 # official GitHub Action used to check-out a repository so a workflow can access it.
+      - name: Checkout code
+        uses: actions/checkout@v2 # official GitHub Action used to check-out a repository so a workflow can access it.
       - name: CreateRelease
         id: create_release
         uses: actions/create-release@v1
