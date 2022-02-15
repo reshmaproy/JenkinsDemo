@@ -1,9 +1,10 @@
 on:
-  pull_request:
+  #pull_request:
+  push:
     branches:
       -main 
       #-master
-    types: [closed]
+    #types: [closed]
 
       
 
