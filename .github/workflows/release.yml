@@ -1,4 +1,4 @@
- on:
+on:
   pull_request:
     branches:
       -main 
@@ -13,40 +13,40 @@ jobs:
   release:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
-      steps:
-      #- name: Check Version Change
-        #id : verion_change
-        #vars:
+    steps:
+    #- name: Check Version Change
+      #id : verion_change
+      #vars:
 
-          #main_version = 
-          #pr_verison = 
-        # when main_version != pr_verison:
-            #steps: <create, upload, publish release>
+        #main_version = 
+        #pr_verison = 
+       # when main_version != pr_verison:
+          #steps: <create, upload, publish release>
 
 
 
-      - name: Create Draft Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: Tag name
-          release_name: Release 
-          draft: true
-          prerelease: false
+    - name: Create Draft Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: Tag name
+        release_name: Release 
+        draft: true
+        prerelease: false
 
-      - uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./my-artifact.zip
-          asset_name: my-artifact.zip
-          asset_content_type: application/zip
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./my-artifact.zip
+        asset_name: my-artifact.zip
+        asset_content_type: application/zip
 
-      - uses: eregon/publish-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: ${{ steps.create_release.outputs.id }}
+    - uses: eregon/publish-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        release_id: ${{ steps.create_release.outputs.id }}
