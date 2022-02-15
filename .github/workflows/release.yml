@@ -3,7 +3,7 @@
     branches:
       -main 
       #-master
-    types = [closed]
+    types: [closed]
 
       
 
