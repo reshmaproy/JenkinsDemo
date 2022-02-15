@@ -11,8 +11,8 @@ name: Create Release
 
 jobs:
   release:
-    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
     steps:
     #- name: Check Version Change
       #id : verion_change
